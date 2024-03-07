@@ -25,6 +25,10 @@ export const navLinks = [
     title: "Features",
   },
   {
+    id: "work",
+    title: "work",
+  },
+  {
     id: "product",
     title: "Product",
   },
@@ -88,18 +92,23 @@ export const feedback = [
 export const stats = [
   {
     id: "stats-1",
-    title: "User Active",
-    value: "3800+",
+    title: "Year Of Experience",
+    value: "3+",
   },
   {
     id: "stats-2",
-    title: "Trusted by Company",
-    value: "230+",
+    title: "Talented IT Professionals",
+    value: "10+",
   },
   {
     id: "stats-3",
-    title: "Transaction",
-    value: "$230M+",
+    title: "Successful Projects",
+    value: "21+",
+  },
+  {
+    id: "stats-3",
+    title: "Clients",
+    value: "15+",
   },
 ];
 
