@@ -57,6 +57,22 @@
   );
 }
 
+@keyframes dash {
+  0% {
+    stroke: #45e6f8; /* Red color at the beginning */
+    stroke-dashoffset: 12;
+  }
+ 
+  100% {
+    stroke: #45e6f8; /* Transition to teal color */
+    stroke-dashoffset: -12;
+  }
+}
+
+.path.active {
+  animation: dash 1s linear infinite forwards;
+}
+
 .bg-black-gradient-2 {
   background: linear-gradient(
     -168.39deg,

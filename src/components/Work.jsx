@@ -71,7 +71,7 @@ const Work = () => {
   };
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -255,11 +255,9 @@ const Work = () => {
               {tabs.map((tab, index) => (
                 <button
                   key={index}
-                  className={`px-4 py-2 border rounded-3xl hover:brightness-125 my-1 text-white border-gray-300 ${
-                    activeTab === index ? "bg-blue-gradient text-neutral-900" : "hover:bg-black"
-                  }  ${
-                    activeTab === index ? " text-neutral-900" : "hover:bg-black"
-                  } `}
+                  className={`px-4 py-2 border rounded-3xl hover:brightness-125 my-1 border-gray-300 ${
+                    activeTab === index ? "bg-blue-gradient text-black" : "hover:bg-black text-white"
+                  }   `}
                   onClick={() => handleTabClick(index)}
                   role="tab"
                   aria-selected={activeTab === index}
@@ -271,18 +269,20 @@ const Work = () => {
           </div>
         </div>
         <div className="w-3/4">
-          <div className="pl-7 ">
+          <div className="px-16 ">
             <div className="block text-white " role="tabpanel">
               <div>
-                <Slider {...settings} className="pb-8">
+                <Slider {...settings} className="pb-7 ">
                   {tabs[activeTab].images.map((imageUrl, index) => (
-                    
-                    <div className="relative overflow-hidden rounded-lg m-10 md:h-96">
-                      <img
-                        src={imageUrl}
-                        className="object-cover max-w-full  max-h-full"
-                        alt={`Image ${index}`}
-                      />
+                    <div className="  flex justify-center items-center ">
+                      
+                      <div className="overflow-hidden  px-12 md:h-96">
+                        <img
+                          src={imageUrl}
+                          className="w-full rounded-3xl max-h-full"
+                          alt={`Image ${index}`}
+                        />
+                      </div>
                     </div>
                   
                   ))} 
