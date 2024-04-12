@@ -10,8 +10,9 @@ import {
   SEO,
   Quality,
 } from "../assets/index";
+import { motion } from "framer-motion";
 
-const Billing = () => {
+const Services = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const Data = [
@@ -60,7 +61,7 @@ const Billing = () => {
           icon: `${Mobile.Kotlin}`,
         },
         {
-          name: "React_Native",
+          name: "React Native",
           icon: `${Mobile.React_Native}`,
         },
         {
@@ -118,7 +119,7 @@ const Billing = () => {
           icon: `${Backend.Dot_Net}`,
         },
         {
-          name: "Node_js",
+          name: "Node js",
           icon: `${Backend.Node_js}`,
         },
         {
@@ -191,7 +192,7 @@ const Billing = () => {
       image: `${Customer.main_cu}`,
       icons: [
         {
-          name: "Email_Support",
+          name: "Email Support",
           icon: `${Customer.Email_Support}`,
         },
         {
@@ -214,10 +215,10 @@ const Billing = () => {
     setActiveTab(index);
   };
   return (
-    <section id="product" className={layout.sectionReverseadd}>
-      <div class="col-12 text-center">
-        <span class="block text-white text-3xl  ">Our Services</span>
-        <h2 class="text-4xl font-bold text-white">
+    <section id="services" className={layout.sectionReverseadd}>
+      <div class="col-12 text-center ">
+        <span className={styles.heading2}>Our Services</span>
+        <h2 class="text-4xl  text-white font-poppins font-semibold">
           Digital Design & Development Tasks <br /> Under One Roof
         </h2>
       </div>
@@ -289,17 +290,16 @@ const Billing = () => {
           <path fill="#ED1C24" d="M560.001 86.4357V72.8217C560.001 70.0595 557.718 67.8892 554.814 67.8892H541.12C540.913 74.7948 544.44 77.7543 544.44 77.7543L555.229 88.0141C555.229 88.0141 556.058 88.606 556.888 89.0006H557.511C558.963 89.0006 560.001 87.8168 560.001 86.4357Z"></path>
           <path fill="#3EAFD1" d="M522.565 48.9995H536.179C538.941 48.9995 541.111 51.2818 541.111 54.1864V67.8799C534.206 68.0874 531.246 64.5603 531.246 64.5603L520.987 53.7715C520.987 53.7715 520.395 52.9416 520 52.1117V51.6967C520 50.2444 521.184 48.9995 522.565 48.9995Z"></path> */}
           <defs>
-
-          <pattern
-      id="image"
-      x="0"
-      y="0"
-      patternUnits="userSpaceOnUse"
-      height="100"
-      width="100"
-    >
-      <img href={logo1} x="0" y="0" height="100" width="100" />
-    </pattern>
+            <pattern
+              id="image"
+              x="0"
+              y="0"
+              patternUnits="userSpaceOnUse"
+              height="100"
+              width="100"
+            >
+              <img href={logo1} x="0" y="0" height="100" width="100" />
+            </pattern>
             {/* <filter
               id="filter0_d_1044:1079"
               x="451"
@@ -325,14 +325,18 @@ const Billing = () => {
       <div className="flex  gep-4 md:block lg:block">
         <ul className="flex flex-wrap justify-between ">
           {Data.map((tab, index) => (
-            <li>
+            <motion.li
+              initial={{ opacity: 0, y: -70 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ease: "anticipate", duration: index * 0.2 }}
+            >
               <button
                 className="text-white shadow-xl shadow-cyan-500/50 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl hover:duration-200 focus:ring-2 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-4 py-2 flex items-center space-x-2 transition-all duration-1000"
                 onClick={() => handleTabClick(index)}
               >
                 <span>{tab.Labal}</span>
               </button>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
@@ -340,20 +344,45 @@ const Billing = () => {
       <div class="flex flex-wrap py-12 ">
         <div class="md:w-7/12 flex flex-col justify-around">
           <div class="content ">
-            <h3 class="text-5xl  text-white font-bold">
+            <motion.li
+             initial={{ opacity: 0, y: -70 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ ease: "easeOut", duration: 0.5 }}
+            class="text-5xl font-poppins font-semibold  text-white ">
               {Data[activeTab].Labal}
-            </h3>
-            <p class="mt-6 text-white">{Data[activeTab].p}</p>
+            </motion.li>
+            {/* <p class="mt-6 text-white">{Data[activeTab].p}</p> */}
+            <div className="mt-6">
+            {Data[activeTab].p.split(" ").map((el, i) => (
+              <motion.span
+               className={`${styles.paragraph} max-w-[470px] `}
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1   }}
+                transition={{
+                  duration: 0.25,
+                  delay: i / 20,
+                }}
+                key={i}
+              >
+                {el}{" "}
+              </motion.span>
+            ))}
+            </div>
+            
           </div>
 
-          <div class=" grid grid-cols-6   gap-4">
+          <div class=" grid grid-cols-6  items-center gap-5">
             {Data[activeTab].icons.map((ic, i) => (
-              <div class="flex flex-col gap-4">
+              <motion.div 
+              initial={{ opacity: 0, x: -120 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ ease: "anticipate", duration: i * 0.2 }}
+              class="flex flex-col gap-4">
                 <span>
-                  <img src={ic.icon} alt="icon" />
+                  <img src={ic.icon} className="items-center" alt="icon" />
                 </span>
-                <h5 className="text-white text-xl">{ic.name}</h5>
-              </div>
+                <h5 className="text-white items-center text-xl">{ic.name}</h5>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -372,4 +401,4 @@ const Billing = () => {
   );
 };
 
-export default Billing;
+export default Services;

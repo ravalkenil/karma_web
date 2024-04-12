@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../style'
 import { logo } from '../assets'
 import { footerLinks, socialMedia } from '../constants'
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
@@ -25,12 +26,16 @@ const Footer = () => {
               </h4>
               <ul className='list-none mt-4'>
                 {link.links.map((item, index) => (
-                  <li 
+
+                  <motion.li 
+                    initial={{ opacity: 0, y: -70 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ ease: "anticipate", duration: index * 0.8 }}
                     key={item.name} 
                     className={`font-poppins font-normal text-[16px] leading-[24px] text-dimWhite hover:text-secondary cursor-pointer ${index !== link.links.length - 1 ? 'mb-4' : 'mb-0'}`}
                   >
                     {item.name}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>

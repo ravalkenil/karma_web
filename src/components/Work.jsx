@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styles from "../style";
 import { robot, robot1, robot2 } from "../assets";
-import {workimages} from "../assets/index";
+import { workimages } from "../assets/index";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 
 const Work = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,7 +29,7 @@ const Work = () => {
       content: "NFT Marketplace",
       images: [
         `${workimages.Nft_next}`,
-        `${workimages.Nft_next}`
+        `${workimages.Nft_next}`,
         // Add more image URLs here
       ],
       p: "The premier NFT marketplace where digital art, collectibles, and unique digital assets come to life like never before. Dive into a world where creativity knows no bounds, and ownership is as unique as the blockchain itself. NFTropolis is your one-stop destination for discovering, buying, selling, and showcasing the most extraordinary NFTs",
@@ -41,7 +42,7 @@ const Work = () => {
       content: "NFT Bridge",
       images: [
         `${workimages.Nft_bridge}`,
-        `${workimages.Nft_bridge}`
+        `${workimages.Nft_bridge}`,
         // Add more image URLs here
       ],
       p: "The premier NFT marketplace where digital art, collectibles, and unique digital assets come to life like never before. Dive into a world where creativity knows no bounds, and ownership is as unique as the blockchain itself. NFTropolis is your one-stop destination for discovering, buying, selling, and showcasing the most extraordinary NFTs",
@@ -93,6 +94,8 @@ const Work = () => {
       <div className="h-4 w-4 rounded-lg hover:brightness-125 bg-teal-300" />
     ),
   };
+
+  const text = "Framer Motion is a really cool tool".split(" ");
 
   return (
     <section
@@ -247,23 +250,38 @@ const Work = () => {
         </div>
       </div> */}
 
-      <h2 className={styles.heading2}>Work History </h2>
-      <div className="flex ">
+      <h2 className={styles.heading2}>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ ease: "anticipate", duration: 1 }}
+        >
+          Work History
+        </motion.div>
+      </h2>
+      <div className="flex my-6">
         <div className="w-1/4 ">
           <div className="overflow-x-auto ">
             <div className="flex flex-col ">
               {tabs.map((tab, index) => (
-                <button
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ ease: "anticipate", duration: index * 0.9 }}
                   key={index}
-                  className={`px-4 py-2 border rounded-3xl hover:brightness-125 my-1 border-gray-300 ${
-                    activeTab === index ? "bg-blue-gradient text-black" : "hover:bg-black text-white"
-                  }   `}
+                  className={`px-4 py-2 border rounded-3xl text-center hover:brightness-125 my-1 border-gray-300 ${
+                    activeTab === index
+                      ? "bg-blue-gradient text-black"
+                      : "hover:bg-black text-white"
+                  }`}
                   onClick={() => handleTabClick(index)}
                   role="tab"
                   aria-selected={activeTab === index}
+                  // key={tabs.id}
+                  // className={`flex-1 flex justify-start items-center flex-row m-3`}
                 >
-                  {tab.label}
-                </button>
+                  <button>{tab.label}</button>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -275,7 +293,6 @@ const Work = () => {
                 <Slider {...settings} className="pb-7 ">
                   {tabs[activeTab].images.map((imageUrl, index) => (
                     <div className="  flex justify-center items-center ">
-                      
                       <div className="overflow-hidden  px-12 md:h-96">
                         <img
                           src={imageUrl}
@@ -284,17 +301,38 @@ const Work = () => {
                         />
                       </div>
                     </div>
-                  
-                  ))} 
+                  ))}
                 </Slider>
-                <h1 className= "text-white text-5xl pb-8">{tabs[activeTab].label} </h1>
 
-                <p className="pt-10">{tabs[activeTab].p}</p>
-                <ul className="list-disc pl-4">
+                <motion.h1 className="text-gradient font-bold text-5xl pb-8">
+                  {tabs[activeTab].label}{" "}
+                </motion.h1>
+
+                {tabs[activeTab].p.split(" ").map((el, i) => (
+                  <motion.span
+                    className={`${styles.paragraph}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.25,
+                      delay: i / 20,
+                    }}
+                    key={i}
+                  >
+                    {el}{" "}
+                  </motion.span>
+                ))}
+                {/* <p>{tabs[activeTab].p}</p> */}
+                <motion.ul
+                  initial={{ opacity: 0, x: 150 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ ease: "easeOut", duration: 0.5 }}
+                  className={` ${styles.paragraph} list-disc pl-4 my-2`}
+                >
                   <li>{tabs[activeTab].li1}</li>
                   <li>{tabs[activeTab].li2}</li>
                   <li>{tabs[activeTab].li3}</li>
-                </ul>
+                </motion.ul>
               </div>
             </div>
           </div>
